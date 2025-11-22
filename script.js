@@ -1,16 +1,16 @@
-function add(numOne, numTwo) {
+let add = function(numOne, numTwo) {
     return numOne + numTwo
 };
 
-function subtract(numOne, numTwo) {
+let subtract = function(numOne, numTwo) {
     return numOne - numTwo
 };
 
-function multiply(numOne, numTwo) {
+let multiply = function(numOne, numTwo) {
     return numOne * numTwo
 };
 
-function divide(numOne, numTwo) {
+let divide = function(numOne, numTwo) {
     return numOne / numTwo
 };
 
@@ -18,3 +18,8 @@ function divide(numOne, numTwo) {
 let firstNum;
 let operator;
 let secondNum;
+
+// creating an operate function
+function operate(operator, numOne, numTwo) {
+    return operator(numOne, numTwo);
+};
