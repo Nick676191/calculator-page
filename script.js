@@ -78,3 +78,29 @@ posNegButton.style.width = firstBut.style.width;
 posNegButton.style.height = firstBut.style.height;
 posNegButton.textContent = "+/-"
 numContainer.appendChild(posNegButton);
+
+// creating the buttons in the operator container
+const eqBtn = document.createElement("button");
+eqBtn.classList.add("op");
+eqBtn.textContent = "=";
+operatorContainer.appendChild(eqBtn);
+
+const plusBtn = document.createElement("button");
+plusBtn.classList.add("op");
+plusBtn.textContent = "+";
+operatorContainer.appendChild(plusBtn);
+
+const minusBtn = document.createElement("button");
+minusBtn.classList.add("op");
+minusBtn.textContent = "-";
+operatorContainer.appendChild(minusBtn);
+
+const multBtn = document.createElement("button");
+multBtn.classList.add("op");
+multBtn.textContent = "*";
+operatorContainer.appendChild(multBtn);
+
+const divideBtn = document.createElement("button");
+divideBtn.classList.add("op");
+divideBtn.textContent = "/";
+operatorContainer.appendChild(divideBtn);
