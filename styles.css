@@ -13,7 +13,14 @@
 }
 
 .window {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
     flex: 1 0 auto;
+}
+
+.show {
+    padding-right: 10px;
 }
 
 .btns {

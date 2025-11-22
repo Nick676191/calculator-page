@@ -31,6 +31,11 @@ const calcWindow = document.createElement("div");
 calcWindow.classList.add("window");
 calculator.appendChild(calcWindow);
 
+const numField = document.createElement("h1");
+numField.classList.add("show");
+numField.textContent = "NUM"
+calcWindow.appendChild(numField);
+
 const btnContainer = document.createElement("div");
 btnContainer.classList.add("btns");
 calculator.appendChild(btnContainer);
@@ -48,6 +53,7 @@ btnContainer.appendChild(operatorContainer);
 for (let i = 0; i < 10; i++) {
     let btn = document.createElement("button");
     btn.classList.add("num");
+    btn.id = "btn";
     btn.textContent = i;
     // grabs the width of the calculator div and divides it by 3
     // subtracting a 1/6 for rounding error, the box-sizing is border box so the margin/padding shouldn't affect the width of the buttons in the container
@@ -82,25 +88,30 @@ numContainer.appendChild(posNegButton);
 // creating the buttons in the operator container
 const eqBtn = document.createElement("button");
 eqBtn.classList.add("op");
+eqBtn.id = "activate";
 eqBtn.textContent = "=";
 operatorContainer.appendChild(eqBtn);
 
 const plusBtn = document.createElement("button");
 plusBtn.classList.add("op");
+plusBtn.id = "oper";
 plusBtn.textContent = "+";
 operatorContainer.appendChild(plusBtn);
 
 const minusBtn = document.createElement("button");
 minusBtn.classList.add("op");
+minusBtn.id = "oper";
 minusBtn.textContent = "-";
 operatorContainer.appendChild(minusBtn);
 
 const multBtn = document.createElement("button");
 multBtn.classList.add("op");
+multBtn.id = "oper";
 multBtn.textContent = "*";
 operatorContainer.appendChild(multBtn);
 
 const divideBtn = document.createElement("button");
 divideBtn.classList.add("op");
+divideBtn.id = "oper";
 divideBtn.textContent = "/";
 operatorContainer.appendChild(divideBtn);
