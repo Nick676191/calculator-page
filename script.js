@@ -64,3 +64,17 @@ clearButton.style.width = numContainer.clientWidth + "px";
 clearButton.style.height = firstBut.style.height;
 clearButton.textContent = "clear";
 numContainer.insertBefore(clearButton, firstBut);
+
+const decBtn = document.createElement("button");
+decBtn.classList.add("decimal");
+decBtn.style.width = firstBut.style.width;
+decBtn.style.height = firstBut.style.height;
+decBtn.textContent = ".";
+numContainer.appendChild(decBtn);
+
+const posNegButton = document.createElement("button");
+posNegButton.classList.add("pos-neg");
+posNegButton.style.width = firstBut.style.width;
+posNegButton.style.height = firstBut.style.height;
+posNegButton.textContent = "+/-"
+numContainer.appendChild(posNegButton);
