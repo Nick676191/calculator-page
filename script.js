@@ -26,6 +26,23 @@ function operate(operator, numOne, numTwo) {
 
 // creating all of the buttons inside of the calculator div
 const calculator = document.querySelector(".calc-container");
+
+const calcWindow = document.createElement("div");
+calcWindow.classList.add("window");
+calculator.appendChild(calcWindow);
+
+const btnContainer = document.createElement("div");
+btnContainer.classList.add("btns");
+calculator.appendChild(btnContainer);
+
+const numContainer = document.createElement("div");
+numContainer.classList.add("numbers");
+btnContainer.appendChild(numContainer);
+
+const operatorContainer = document.createElement("div");
+operatorContainer.classList.add("operators");
+btnContainer.appendChild(operatorContainer);
+
 for (let i = 0; i < 10; i++) {
     let btn = document.createElement("button");
     btn.classList.add("num");
@@ -33,5 +50,5 @@ for (let i = 0; i < 10; i++) {
     // grabs the width of the calculator div and divides it by 3
     btn.style.width = calculator.clientWidth / 3 + "px";
     btn.style.height = btn.style.width;
-    calculator.appendChild(btn);
+    numContainer.appendChild(btn);
 };

@@ -6,8 +6,7 @@
 
 .calc-container {
     display: flex;
-    flex-wrap: wrap;
-    align-content: flex-end;
+    flex-direction: column;
     height: 750px;
     width: 450px;
     background-color: grey;
