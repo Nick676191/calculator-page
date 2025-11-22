@@ -37,6 +37,8 @@ calculator.appendChild(btnContainer);
 
 const numContainer = document.createElement("div");
 numContainer.classList.add("numbers");
+const numContainerWidth = btnContainer.clientWidth * (3/4);
+numContainer.style.width = numContainerWidth + "px";
 btnContainer.appendChild(numContainer);
 
 const operatorContainer = document.createElement("div");
@@ -48,7 +50,17 @@ for (let i = 0; i < 10; i++) {
     btn.classList.add("num");
     btn.textContent = i;
     // grabs the width of the calculator div and divides it by 3
-    btn.style.width = calculator.clientWidth / 3 + "px";
+    // subtracting a 1/6 for rounding error, the box-sizing is border box so the margin/padding shouldn't affect the width of the buttons in the container
+    const btnWidth = (numContainer.clientWidth / 3) - (1/6);
+    btn.style.width = btnWidth + "px";
     btn.style.height = btn.style.width;
     numContainer.appendChild(btn);
 };
+
+const clearButton = document.createElement("button");
+const firstBut = document.querySelector(".num");
+clearButton.classList.add("clear");
+clearButton.style.width = numContainer.clientWidth + "px";
+clearButton.style.height = firstBut.style.height;
+clearButton.textContent = "clear";
+numContainer.insertBefore(clearButton, firstBut);

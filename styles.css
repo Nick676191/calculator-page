@@ -11,3 +11,28 @@
     width: 450px;
     background-color: grey;
 }
+
+.window {
+    flex: 1 0 auto;
+}
+
+.btns {
+    display: flex;
+    flex: 0 1 auto;
+}
+
+.numbers {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    align-content: flex-end;
+}
+
+.operators {
+    flex: 1 0 auto;
+}
+
+.num {
+    padding-block: 0px;
+    padding-inline: 0px;
+}
