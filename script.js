@@ -39,19 +39,20 @@ const numContainer = btnContainer.querySelector(".numbers");
 const numContainerWidth = btnContainer.clientWidth * (3/4);
 numContainer.style.width = numContainerWidth + "px";
 
-const operatorContainer = btnContainer.createElement("div");
+const operatorContainer = btnContainer.querySelector(".operators");
 
 const clearButton = numContainer.querySelector(".clear");
+const dimBtn = (numContainer.clientWidth / 3) - (1/6);
 clearButton.style.width = numContainer.clientWidth + "px";
-clearButton.style.height = firstBut.style.height;
+clearButton.style.height = dimBtn + "px";
 
 const decBtn = numContainer.querySelector(".decimal");
-decBtn.style.width = firstBut.style.width;
-decBtn.style.height = firstBut.style.height;
+decBtn.style.width = dimBtn + "px";
+decBtn.style.height = dimBtn + "px";
 
 const posNegButton = numContainer.querySelector(".pos-neg");
-posNegButton.style.width = firstBut.style.width;
-posNegButton.style.height = firstBut.style.height;
+posNegButton.style.width = dimBtn + "px";
+posNegButton.style.height = dimBtn + "px";
 
 // selecting the operator buttons
 const eqBtn = operatorContainer.querySelector(".equal");
@@ -69,7 +70,7 @@ for (let i = 0; i < 10; i++) {
     const btnWidth = (numContainer.clientWidth / 3) - (1/6);
     btn.style.width = btnWidth + "px";
     btn.style.height = btn.style.width;
-    numContainer.appendChild(btn);
+    numContainer.insertBefore(btn, decBtn);
 };
 
 // populate the display once a digit has been pressed
