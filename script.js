@@ -31,7 +31,6 @@ const calculator = document.querySelector(".calc-container");
 const calcWindow = calculator.querySelector(".window");
 
 const numField = calcWindow.querySelector(".show");
-// numField.textContent = popDisplay();
 
 const btnContainer = calculator.querySelector(".btns");
 
@@ -74,9 +73,8 @@ for (let i = 0; i < 10; i++) {
 };
 
 // populate the display once a digit has been pressed
-function popDisplay() {
-    const digBtns = numContainer.querySelectorAll("#btn");
-    digBtns.forEach(digBtn => digBtn.addEventListener("click", (digBtn) => {
-        return digBtn.textContent;
-    }));
-};
+const digBtns = numContainer.querySelectorAll("#btn");
+firstNum = digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
+    let numShown = event.target.textContent;
+    numField.textContent += numShown;
+}));
