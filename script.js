@@ -1,3 +1,4 @@
+// functions for basic arithmetic
 let add = function(numOne, numTwo) {
     return numOne + numTwo
 };
@@ -24,32 +25,40 @@ function operate(operator, numOne, numTwo) {
     return operator(numOne, numTwo);
 };
 
-// creating all of the buttons inside of the calculator div
+// selecting all of the buttons and important div blocks inside of the calculator div
 const calculator = document.querySelector(".calc-container");
 
-// const calcWindow = document.createElement("div"); /
-// calcWindow.classList.add("window");
-// calculator.appendChild(calcWindow);
+const calcWindow = calculator.querySelector(".window");
 
-// const numField = document.createElement("h1"); /
-// numField.classList.add("show");
-// // numField.textContent = popDisplay();
-// calcWindow.appendChild(numField);
+const numField = calcWindow.querySelector(".show");
+// numField.textContent = popDisplay();
 
-// const btnContainer = document.createElement("div"); /
-// btnContainer.classList.add("btns");
-// calculator.appendChild(btnContainer);
+const btnContainer = calculator.querySelector(".btns");
 
-// const numContainer = document.createElement("div"); /
-// numContainer.classList.add("numbers");
+const numContainer = btnContainer.querySelector(".numbers");
 const numContainerWidth = btnContainer.clientWidth * (3/4);
 numContainer.style.width = numContainerWidth + "px";
-// btnContainer.appendChild(numContainer);
 
-// const operatorContainer = document.createElement("div"); /
-// operatorContainer.classList.add("operators");
-// btnContainer.appendChild(operatorContainer);
+const operatorContainer = btnContainer.createElement("div");
 
+const clearButton = numContainer.querySelector(".clear");
+clearButton.style.width = numContainer.clientWidth + "px";
+clearButton.style.height = firstBut.style.height;
+
+const decBtn = numContainer.querySelector(".decimal");
+decBtn.style.width = firstBut.style.width;
+decBtn.style.height = firstBut.style.height;
+
+const posNegButton = numContainer.querySelector(".pos-neg");
+posNegButton.style.width = firstBut.style.width;
+posNegButton.style.height = firstBut.style.height;
+
+// selecting the operator buttons
+const eqBtn = operatorContainer.querySelector(".equal");
+
+const operBtns = operatorContainer.querySelectorAll("#oper");
+
+// creating all of the digit buttons for the calculator
 for (let i = 0; i < 10; i++) {
     let btn = document.createElement("button");
     btn.classList.add("num");
@@ -63,66 +72,10 @@ for (let i = 0; i < 10; i++) {
     numContainer.appendChild(btn);
 };
 
-// const clearButton = document.createElement("button"); /
-// const firstBut = document.querySelector(".num");
-// clearButton.classList.add("clear");
-clearButton.style.width = numContainer.clientWidth + "px";
-clearButton.style.height = firstBut.style.height;
-// clearButton.textContent = "clear";
-// numContainer.insertBefore(clearButton, firstBut);
-
-// const decBtn = document.createElement("button"); /
-// decBtn.classList.add("decimal");
-decBtn.style.width = firstBut.style.width;
-decBtn.style.height = firstBut.style.height;
-// decBtn.textContent = ".";
-// numContainer.appendChild(decBtn);
-
-// const posNegButton = document.createElement("button"); /
-// posNegButton.classList.add("pos-neg");
-posNegButton.style.width = firstBut.style.width;
-posNegButton.style.height = firstBut.style.height;
-// posNegButton.textContent = "+/-"
-// numContainer.appendChild(posNegButton);
-
-// creating the buttons in the operator container
-// const eqBtn = document.createElement("button"); /
-// eqBtn.classList.add("op");
-// eqBtn.id = "activate";
-// eqBtn.textContent = "=";
-// operatorContainer.appendChild(eqBtn);
-
-// const plusBtn = document.createElement("button"); /
-// plusBtn.classList.add("op");
-// plusBtn.id = "oper";
-// plusBtn.textContent = "+";
-// operatorContainer.appendChild(plusBtn);
-
-// const minusBtn = document.createElement("button"); /
-// minusBtn.classList.add("op");
-// minusBtn.id = "oper";
-// minusBtn.textContent = "-";
-// operatorContainer.appendChild(minusBtn);
-
-// const multBtn = document.createElement("button"); /
-// multBtn.classList.add("op");
-// multBtn.id = "oper";
-// multBtn.textContent = "*";
-// operatorContainer.appendChild(multBtn);
-
-// const divideBtn = document.createElement("button"); /
-// divideBtn.classList.add("op");
-// divideBtn.id = "oper";
-// divideBtn.textContent = "/";
-// operatorContainer.appendChild(divideBtn);
-
-// creating functions to populate the display once a digit has been pressed
+// populate the display once a digit has been pressed
 function popDisplay() {
     const digBtns = numContainer.querySelectorAll("#btn");
     digBtns.forEach(digBtn => digBtn.addEventListener("click", (digBtn) => {
         return digBtn.textContent;
     }));
 };
-
-// prob going to have to comment out a lot of this javascript code and transfer it over to HTML
-// the ordering of the divs that are created in js is messing with some of the functions
