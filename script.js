@@ -1,17 +1,17 @@
 // functions for basic arithmetic
-let add = function(numOne, numTwo) {
+function add(numOne, numTwo) {
     return numOne + numTwo
 };
 
-let subtract = function(numOne, numTwo) {
+function subtract(numOne, numTwo) {
     return numOne - numTwo
 };
 
-let multiply = function(numOne, numTwo) {
+function multiply(numOne, numTwo) {
     return numOne * numTwo
 };
 
-let divide = function(numOne, numTwo) {
+function divide(numOne, numTwo) {
     return numOne / numTwo
 };
 
