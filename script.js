@@ -16,9 +16,9 @@ let divide = function(numOne, numTwo) {
 };
 
 // creating variables for the calculator
-let firstNum;
+let firstNum = "";
 let operator;
-let secondNum;
+let secondNum = "";
 
 // creating an operate function
 function operate(operator, numOne, numTwo) {
@@ -74,7 +74,15 @@ for (let i = 0; i < 10; i++) {
 
 // populate the display once a digit has been pressed
 const digBtns = numContainer.querySelectorAll("#btn");
-firstNum = digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
-    let numShown = event.target.textContent;
-    numField.textContent += numShown;
+digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
+    let numClicked = event.target.textContent;
+    firstNum += numClicked;
+    numField.textContent = firstNum;
+}));
+
+// grab the operator that was hit
+const opBtns = operatorContainer.querySelectorAll("#oper");
+opBtns.forEach(opBtn => opBtn.addEventListener("click", (event) => {
+    let tokenList = event.target.classList;
+    operator = tokenList[tokenList.length - 1];
 }));
