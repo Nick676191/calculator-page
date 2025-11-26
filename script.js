@@ -19,6 +19,7 @@ function divide(numOne, numTwo) {
 let firstNum = "";
 let operator;
 let secondNum = "";
+let finalCalc;
 
 // creating an operate function
 function operate(operator, numOne, numTwo) {
@@ -74,15 +75,45 @@ for (let i = 0; i < 10; i++) {
 
 // populate the display once a digit has been pressed
 const digBtns = numContainer.querySelectorAll("#btn");
+// function firstNumStopListening() {
+//     if (operator) {
+//         console.log("I will stop listening");
+//         return
+//     };
+// };
+
 digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
-    let numClicked = event.target.textContent;
-    firstNum += numClicked;
-    numField.textContent = firstNum;
+    if (firstNum && operator) {
+        return;
+    } else {
+        firstNum += event.target.textContent;
+        numField.textContent = firstNum;
+    };
 }));
 
-// grab the operator that was hit
+// grab the operator that was hit and then grab the second number after the operator was hit
 const opBtns = operatorContainer.querySelectorAll("#oper");
 opBtns.forEach(opBtn => opBtn.addEventListener("click", (event) => {
     let tokenList = event.target.classList;
     operator = tokenList[tokenList.length - 1];
 }));
+
+// grabbing the second number
+digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
+    if (firstNum && operator) {
+        secondNum += event.target.textContent;
+        numField.textContent = secondNum;
+    } else {
+        return;
+    };
+}));
+
+// doing the calculation once the equal button has been hit
+eqBtn.addEventListener("click", () => {
+    if (operator && firstNum && secondNum) {
+        finalCalc = operate(window[operator], Number(firstNum), Number(secondNum));
+        numField.textContent = finalCalc;
+    } else {
+        return;
+    };
+});
