@@ -117,3 +117,12 @@ eqBtn.addEventListener("click", () => {
         return;
     };
 });
+
+// clearing the calculator
+clearButton.addEventListener("click", () => {
+    firstNum = "";
+    secondNum = "";
+    finalCalc = "";
+    operator = "";
+    numField.textContent = "";
+});
