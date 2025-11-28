@@ -43,8 +43,12 @@ const operatorContainer = btnContainer.querySelector(".operators");
 
 const clearButton = numContainer.querySelector(".clear");
 const dimBtn = (numContainer.clientWidth / 3) - (1/6);
-clearButton.style.width = numContainer.clientWidth + "px";
+clearButton.style.width = (dimBtn * 2) + "px";
 clearButton.style.height = dimBtn + "px";
+
+const backBtn = numContainer.querySelector(".backspace");
+backBtn.style.width = dimBtn + "px";
+backBtn.style.height = dimBtn + "px";
 
 const decBtn = numContainer.querySelector(".decimal");
 decBtn.style.width = dimBtn + "px";
