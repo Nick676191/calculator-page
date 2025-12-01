@@ -79,21 +79,31 @@ for (let i = 0; i < 10; i++) {
 
 // populate the display once a digit has been pressed
 const digBtns = numContainer.querySelectorAll("#btn");
-// function firstNumStopListening() {
-//     if (operator) {
-//         console.log("I will stop listening");
-//         return
-//     };
-// };
+
+// function for some of the miscelanneous buttons like the backspace, decimal, and sign switching buttons
+function miscFunc() {
+    if (firstNum && operator) {
+        secondNum = secondNum.slice(0, -1);
+        numField.textContent = secondNum;
+    } else if (!firstNum || !operator) {
+        firstNum = firstNum.slice(0, -1);
+        numField.textContent = firstNum;
+    } else {
+        return;
+    };
+};
 
 digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
     if (firstNum && operator) {
-        return;
+        secondNum += event.target.textContent;
+        numField.textContent = secondNum;
     } else {
         firstNum += event.target.textContent;
         numField.textContent = firstNum;
     };
 }));
+
+backBtn.addEventListener("click", miscFunc);
 
 // grab the operator that was hit and then grab the second number after the operator was hit
 const opBtns = operatorContainer.querySelectorAll("#oper");
@@ -102,18 +112,9 @@ opBtns.forEach(opBtn => opBtn.addEventListener("click", (event) => {
     operator = tokenList[tokenList.length - 1];
 }));
 
-// grabbing the second number
-digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
-    if (firstNum && operator) {
-        secondNum += event.target.textContent;
-        numField.textContent = secondNum;
-    } else {
-        return;
-    };
-}));
-
 // doing the calculation once the equal button has been hit
 eqBtn.addEventListener("click", () => {
+    backBtn.removeEventListener("click", miscFunc);
     if (operator && firstNum && secondNum) {
         finalCalc = operate(window[operator], Number(firstNum), Number(secondNum));
         numField.textContent = finalCalc;
