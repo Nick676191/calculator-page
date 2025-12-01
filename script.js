@@ -94,6 +94,18 @@ function backspace() {
     };
 };
 
+function decimal() {
+    if (firstNum && operator) {
+        secondNum += ".";
+        numField.textContent = secondNum;
+    } else if (!firstNum || !operator) {
+        firstNum += ".";
+        numField.textContent = firstNum;
+    } else {
+        return;
+    };
+};
+
 digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
     if (firstNum && operator) {
         secondNum += event.target.textContent;
@@ -105,6 +117,8 @@ digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
 }));
 
 backBtn.addEventListener("click", backspace);
+
+decBtn.addEventListener("click", decimal);
 
 function calculate(specOperator) {
     if (operator && firstNum && secondNum) {
