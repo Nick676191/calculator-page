@@ -20,6 +20,7 @@ let firstNum = "";
 let operator;
 let secondNum = "";
 let finalCalc;
+let operatorArr = [];
 
 // creating an operate function
 function operate(operator, numOne, numTwo) {
@@ -80,8 +81,8 @@ for (let i = 0; i < 10; i++) {
 // populate the display once a digit has been pressed
 const digBtns = numContainer.querySelectorAll("#btn");
 
-// function for some of the miscelanneous buttons like the backspace, decimal, and sign switching buttons
-function miscFunc() {
+// functions for some of the miscelanneous buttons like the backspace, decimal, and sign switching buttons
+function backspace() {
     if (firstNum && operator) {
         secondNum = secondNum.slice(0, -1);
         numField.textContent = secondNum;
@@ -103,25 +104,33 @@ digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
     };
 }));
 
-backBtn.addEventListener("click", miscFunc);
+backBtn.addEventListener("click", backspace);
 
-// grab the operator that was hit and then grab the second number after the operator was hit
-const opBtns = operatorContainer.querySelectorAll("#oper");
-opBtns.forEach(opBtn => opBtn.addEventListener("click", (event) => {
-    let tokenList = event.target.classList;
-    operator = tokenList[tokenList.length - 1];
-}));
-
-// doing the calculation once the equal button has been hit
-eqBtn.addEventListener("click", () => {
+function calculate(specOperator) {
     if (operator && firstNum && secondNum) {
-        finalCalc = operate(window[operator], Number(firstNum), Number(secondNum));
+        finalCalc = operate(window[specOperator], Number(firstNum), Number(secondNum));
         numField.textContent = finalCalc;
         firstNum = finalCalc + "";
         secondNum = "";
     } else {
         return;
     };
+};
+
+// grab the operator that was hit and then grab the second number after the operator was hit
+const opBtns = operatorContainer.querySelectorAll("#oper");
+opBtns.forEach(opBtn => opBtn.addEventListener("click", (event) => {
+    let tokenList = event.target.classList;
+    operator = tokenList[tokenList.length - 1];
+    operatorArr.push(operator);
+    if (operatorArr.length > 1) {
+        calculate(operatorArr[operatorArr.length - 2]);
+    };
+}));
+
+// doing the calculation once the equal button has been hit
+eqBtn.addEventListener("click", () => {
+    calculate(operator);
 });
 
 // clearing the calculator
@@ -131,4 +140,5 @@ clearButton.addEventListener("click", () => {
     finalCalc = "";
     operator = "";
     numField.textContent = "";
+    operatorArr = [];
 });
