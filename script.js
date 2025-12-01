@@ -69,6 +69,7 @@ for (let i = 0; i < 10; i++) {
     let btn = document.createElement("button");
     btn.classList.add("num");
     btn.id = "btn";
+    btn.value = false;
     btn.textContent = i;
     // grabs the width of the calculator div and divides it by 3
     // subtracting a 1/6 for rounding error, the box-sizing is border box so the margin/padding shouldn't affect the width of the buttons in the container
@@ -119,6 +120,7 @@ function signSwitch() {
 };
 
 digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
+    digBtn.value = true;
     if (firstNum && operator) {
         secondNum += event.target.textContent;
         numField.textContent = secondNum;
@@ -140,6 +142,7 @@ function calculate(specOperator) {
         numField.textContent = finalCalc;
         firstNum = finalCalc + "";
         secondNum = "";
+        digBtns.forEach(digBtn => digBtn.value = false);
     } else {
         return;
     };
@@ -161,12 +164,28 @@ eqBtn.addEventListener("click", () => {
     calculate(operator);
 });
 
-// clearing the calculator
-clearButton.addEventListener("click", () => {
-    firstNum = "";
-    secondNum = "";
-    finalCalc = "";
-    operator = "";
-    numField.textContent = "";
-    operatorArr = [];
-});
+// function clear() {
+//     firstNum = "";
+//     secondNum = "";
+//     finalCalc = "";
+//     operator = "";
+//     numField.textContent = "";
+//     operatorArr = [];
+// };
+
+// clearing the variables by reloading the page
+function clear() {
+    location.reload();
+}
+
+// clearing the calculator if the clear button is hit or a digit button is hit after the equal button has been hit
+clearButton.addEventListener("click", clear);
+
+function checkDigBtnPressed() {
+    let nodeListArr = Array.from(digBtns);
+    return nodeListArr.some((dig) => dig.value === "true");
+};
+
+// if ((Number(firstNum) === Number(finalCalc)) && checkDigBtnPressed()) {
+//     clear();
+// };
