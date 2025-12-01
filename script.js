@@ -95,11 +95,23 @@ function backspace() {
 };
 
 function decimal() {
-    if (firstNum && operator) {
+    if (firstNum && operator && !secondNum.includes(".")) {
         secondNum += ".";
         numField.textContent = secondNum;
-    } else if (!firstNum || !operator) {
+    } else if ((!firstNum || !operator) && !firstNum.includes(".")) {
         firstNum += ".";
+        numField.textContent = firstNum;
+    } else {
+        return;
+    };
+};
+
+function signSwitch() {
+    if (firstNum && operator) {
+        secondNum *= -1;
+        numField.textContent = secondNum;
+    } else if (!firstNum || !operator) {
+        firstNum *= -1;
         numField.textContent = firstNum;
     } else {
         return;
@@ -119,6 +131,8 @@ digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
 backBtn.addEventListener("click", backspace);
 
 decBtn.addEventListener("click", decimal);
+
+posNegButton.addEventListener("click", signSwitch);
 
 function calculate(specOperator) {
     if (operator && firstNum && secondNum) {
