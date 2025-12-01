@@ -114,10 +114,11 @@ opBtns.forEach(opBtn => opBtn.addEventListener("click", (event) => {
 
 // doing the calculation once the equal button has been hit
 eqBtn.addEventListener("click", () => {
-    backBtn.removeEventListener("click", miscFunc);
     if (operator && firstNum && secondNum) {
         finalCalc = operate(window[operator], Number(firstNum), Number(secondNum));
         numField.textContent = finalCalc;
+        firstNum = finalCalc + "";
+        secondNum = "";
     } else {
         return;
     };
