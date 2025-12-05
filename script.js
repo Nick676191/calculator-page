@@ -21,7 +21,6 @@ let operator = "";
 let secondNum = "";
 let finalCalc = "";
 let operatorArr = [];
-let calcCount = 0;
 
 // creating an operate function
 function operate(operator, numOne, numTwo) {
@@ -120,11 +119,6 @@ function signSwitch() {
     };
 };
 
-// function checkDigBtnPressed() {
-//     let nodeListArr = Array.from(digBtns);
-//     return nodeListArr.some((dig) => dig.value === "true");
-// };
-
 digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
     if (firstNum && operator) {
         let newNumTwo = event.target.textContent
@@ -152,7 +146,7 @@ function round(num) {
 };
 
 function calculate(specOperator) {
-    if (operator === "divide" && +secondNum === 0) {
+    if (operator === "divide" && secondNum === "0") {
         firstNum = "";
         secondNum = "";
         numField.textContent = "Not Allowed";
@@ -163,7 +157,6 @@ function calculate(specOperator) {
         numField.textContent = round(finalCalc);
         firstNum = finalCalc + "";
         secondNum = "";
-        ++calcCount;
     } else {
         return;
     };
@@ -190,15 +183,6 @@ eqBtn.addEventListener("click", () => {
         return;
     };
 });
-
-// function clear() {
-//     firstNum = "";
-//     secondNum = "";
-//     finalCalc = "";
-//     operator = "";
-//     numField.textContent = "";
-//     operatorArr = [];
-// };
 
 // clearing the variables by reloading the page
 function clear() {
