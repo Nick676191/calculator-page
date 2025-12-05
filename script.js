@@ -146,11 +146,21 @@ decBtn.addEventListener("click", decimal);
 
 posNegButton.addEventListener("click", signSwitch);
 
+// rounding to 5 decimal places
+function round(num) {
+    return Math.round(num * 100000) / 100000
+};
+
 function calculate(specOperator) {
-    if (operator && firstNum && secondNum) {
+    if (operator === "divide" && +secondNum === 0) {
+        firstNum = "";
+        secondNum = "";
+        numField.textContent = "Not Allowed";
+        return;
+    } else if (operator && firstNum && secondNum) {
         digBtns.forEach(digBtn => digBtn.value = false);
         finalCalc = operate(window[specOperator], Number(firstNum), Number(secondNum));
-        numField.textContent = finalCalc;
+        numField.textContent = round(finalCalc);
         firstNum = finalCalc + "";
         secondNum = "";
         ++calcCount;
