@@ -17,10 +17,11 @@ function divide(numOne, numTwo) {
 
 // creating variables for the calculator
 let firstNum = "";
-let operator;
+let operator = "";
 let secondNum = "";
-let finalCalc;
+let finalCalc = "";
 let operatorArr = [];
+let calcCount = 0;
 
 // creating an operate function
 function operate(operator, numOne, numTwo) {
@@ -119,11 +120,20 @@ function signSwitch() {
     };
 };
 
+// function checkDigBtnPressed() {
+//     let nodeListArr = Array.from(digBtns);
+//     return nodeListArr.some((dig) => dig.value === "true");
+// };
+
 digBtns.forEach(digBtn => digBtn.addEventListener("click", (event) => {
-    digBtn.value = true;
     if (firstNum && operator) {
-        secondNum += event.target.textContent;
+        let newNumTwo = event.target.textContent
+        secondNum += newNumTwo;
         numField.textContent = secondNum;
+    } else if (finalCalc && operator) {
+        firstNum = finalCalc;
+        secondNum += event.target.textContent;
+        numField.textContent = secondNum
     } else {
         firstNum += event.target.textContent;
         numField.textContent = firstNum;
@@ -138,11 +148,12 @@ posNegButton.addEventListener("click", signSwitch);
 
 function calculate(specOperator) {
     if (operator && firstNum && secondNum) {
+        digBtns.forEach(digBtn => digBtn.value = false);
         finalCalc = operate(window[specOperator], Number(firstNum), Number(secondNum));
         numField.textContent = finalCalc;
         firstNum = finalCalc + "";
         secondNum = "";
-        digBtns.forEach(digBtn => digBtn.value = false);
+        ++calcCount;
     } else {
         return;
     };
@@ -161,7 +172,13 @@ opBtns.forEach(opBtn => opBtn.addEventListener("click", (event) => {
 
 // doing the calculation once the equal button has been hit
 eqBtn.addEventListener("click", () => {
-    calculate(operator);
+    if (operator && firstNum && secondNum) {
+        calculate(operator);
+        firstNum = "";
+        operator = "";
+    } else {
+        return;
+    };
 });
 
 // function clear() {
@@ -180,12 +197,3 @@ function clear() {
 
 // clearing the calculator if the clear button is hit or a digit button is hit after the equal button has been hit
 clearButton.addEventListener("click", clear);
-
-function checkDigBtnPressed() {
-    let nodeListArr = Array.from(digBtns);
-    return nodeListArr.some((dig) => dig.value === "true");
-};
-
-// if ((Number(firstNum) === Number(finalCalc)) && checkDigBtnPressed()) {
-//     clear();
-// };
